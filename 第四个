@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int ju[100][100];
+    int m;
+    
+    // 使用标准的scanf而不是scanf_s
+    scanf("%d", &m);
+    
+    int i, j;
+    
+    // 输入矩阵
+    for(i = 0; i < m; i++) {
+        for(j = 0; j < m; j++) {
+            scanf("%d", &ju[i][j]);
+        }
+    }
+    
+    // 查找主对角线最大值
+    int max1 = ju[0][0];  // 在循环外部定义并初始化！！！！！！！！！！内部每次循环都会初始化
+    for(int k = 0; k < m; k++) {
+        if(ju[k][k] > max1) {
+            max1 = ju[k][k];
+        }
+    }
+    
+    // 查找副对角线最大值
+    int max2 = ju[0][m-1];  // 注意索引：副对角线第一个元素是[0][m-1]
+    for(int l = 0; l < m; l++) {
+        if(ju[l][m-1-l] > max2) {  // 修正索引计算
+            max2 = ju[l][m-1-l];
+        }
+    }
+    
+    printf("%d %d", max1, max2);
+    return 0;
+}
+了解了gcc标准
